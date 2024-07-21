@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Voucher, { VoucherProps } from './components/Voucher.tsx';
+import BasicTable from './components/BasicTable.tsx';
+import ButtonAppBar from './components/AppBar.tsx';
+import { IVoucher } from './types/IVoucher.tsx';
 
 function App() {
 
-  const [vouchers, setVouchers] = useState<VoucherProps[]>([]);
+  const [vouchers, setVouchers] = useState<IVoucher[]>([]);
 
   useEffect(() => {
     fetch('/api/voucher')
@@ -15,7 +17,8 @@ function App() {
 
   return (
     <>
-      {vouchers.map(obj => <Voucher {...obj}/>)}
+      <ButtonAppBar/>
+      <BasicTable data={vouchers}/>
     </>
   );
 }
